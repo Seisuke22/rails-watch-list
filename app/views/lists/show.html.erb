@@ -3,7 +3,7 @@
   <% @list.movies.each do |movie| %>
   <%# How .where works  %>
     <% bookmark = Bookmark.where(movie: movie, list: @list).first %>
-      <h3><%= movie.title %></h3>
+      <h3><%= movie.title %> <%= link_to '🗑️', bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></h3>
       <p><%= movie.overview %></p>
       <p><%= movie.rating %></p>
       <p>"" <%= bookmark.comment %> ""</p>

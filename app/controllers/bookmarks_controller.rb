@@ -13,7 +13,10 @@ class BookmarksController < ApplicationController
   end
 
   def destroy
-
+    @bookmark = Bookmark.find(params[:id])
+    @bookmark.destroy
+    # How bookmark_path is working if it's not a page
+    redirect_to bookmark_path(@bookmark)
   end
 
   private
