@@ -8,8 +8,8 @@
   <div class="form-size">
     <%= simple_form_for [@list, @bookmark] do |t| %>
       <div class="text-area">
-        <%= t.input :comment %>
-        <%= t.association :movie %>
+        <div class="text"><%= t.input :comment %></div>
+        <div class="text"><%= t.association :movie %></div>
       </div>
       <%= t.submit "Add", class: "btn btn-dark-blue" %>
     <% end %>
