@@ -1,12 +1,10 @@
 <h1><%= "#{@list.name} Page" %></h1>
   <%# How chaining methods works %>
-  <% @list.movies.each do |movie| %>
-  <%# How .where works  %>
-    <% bookmark = Bookmark.where(movie: movie, list: @list).first %>
-      <h3><%= movie.title %> <%= link_to '🗑️', bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></h3>
-      <p><%= movie.overview %></p>
-      <p><%= movie.rating %></p>
-      <p>"" <%= bookmark.comment %> ""</p>
+  <% @list.bookmarks.each do |bookmark| %>
+    <h2><%= bookmark.movie.title %> <%= link_to '🗑️', bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></h2>
+    <p><%= bookmark.movie.overview %></p>
+    <p><%= bookmark.comment %></p>
+    <p><%= bookmark.list.name %></p>
   <% end %>
 
 <%= link_to "Add bookmark", new_list_bookmark_path(@list) %>
