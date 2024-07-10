@@ -1,6 +1,17 @@
-<h1>Bookmark a movie</h1>
-<%= simple_form_for [@list, @bookmark] do |t| %>
-  <%= t.input :comment %>
-  <%= t.association :movie %>
-  <%= t.submit "Add", class: "btn btn-primary" %>
-<% end %>
+<%= render 'navbar' %>
+
+<div class="page-name">
+  <h3>Bookmark a Movie</h3>
+</div>
+
+<div class="form">
+  <div class="form-size">
+    <%= simple_form_for [@list, @bookmark] do |t| %>
+      <div class="text-area">
+        <%= t.input :comment %>
+        <%= t.association :movie %>
+      </div>
+      <%= t.submit "Add", class: "btn btn-dark-blue" %>
+    <% end %>
+  </div>
+</div>
