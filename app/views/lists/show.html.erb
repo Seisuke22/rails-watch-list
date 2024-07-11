@@ -5,12 +5,12 @@
 </div>
 
 <div class="container">
-  <% if @list.bookmarks.empty? %>
+  <% if @bookmarks.empty? %>
     <div class="d-flex justify-content-center">
       <%= image_tag 'empty-folder_2456758.png', alt: 'Empty folder picture' %>
     </div>
   <% else %>
-    <% @list.bookmarks.each do |bookmark| %>
+    <% @bookmarks.each do |bookmark| %>
       <div class="card-product">
         <div class="flex-icon">
         </div>
