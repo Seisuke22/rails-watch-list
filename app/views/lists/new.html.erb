@@ -9,6 +9,7 @@
     <%= simple_form_for(@list) do |t| %>
       <div class="text-area">
         <div class="text"><%= t.input :name %></div>
+        <div class="text"><%= t.input :image, as: :file %></div>
         <%= t.submit "Add", class: "btn btn-dark-blue" %>
       </div>
     <% end %>
