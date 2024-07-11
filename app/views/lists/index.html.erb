@@ -7,18 +7,14 @@
 
 <div class="cards">
   <% @lists.each do |list| %>
-    <a href="<%= list_path(list) %>" class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @list.photo.key=>'); text-decoration: none;">
-      <%= list.name %>
-    </a>
+    <% if list.photo.attached? %>
+      <a href="<%= list_path(list) %>" class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= cl_image_path list.photo.key%>); text-decoration: none;">
+        <%= list.name %>
+      </a>
+    <% else %>
+      <a href="<%= list_path(list) %>" class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg); text-decoration: none;">
+        <%= list.name %>
+      </a>
+    <% end %>
   <% end %>
 </div>
-
-<%# This code is by using the carrierwave gem %>
-<%# <div class="cards">
-  <% @lists.each do |list| %>
-    <%# <a href="<%= list_path(list)" class="card-category" style="text-decoration: none;"> %>
-      <%# <%= image_tag list.image.url , alt: list.name %>
-        <%# <h2><%= list.name</h2> %>
-    <%# </a>
-  <% end %>
-<%# </div> %>
