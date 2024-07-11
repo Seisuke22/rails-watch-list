@@ -1,6 +1,4 @@
 class List < ApplicationRecord
-  mount_uploader :image, ImageUploader
-
   has_many :bookmarks, dependent: :destroy
   has_many :movies, through: :bookmarks
 
