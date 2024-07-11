@@ -2,12 +2,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
-  .text {
-    color: white;
-  }
 }
 
 .form-size {
   width: 50%;
+}
+
+.form .form-size .text-area .text label {
+  color: white;
 }

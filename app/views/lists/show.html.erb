@@ -5,14 +5,25 @@
 </div>
 
 <div class="container">
-  <% @list.bookmarks.each do |bookmark| %>
-    <div class="card-product">
-      <img src="<%= bookmark.movie.poster_url %>" />
-      <div class="card-product-infos">
-        <h2><%= bookmark.movie.title %> <%= link_to '🗑️', bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></h2>
-        <p>Rating: <strong><%= bookmark.movie.rating %></strong></p>
-        <p>" <%= bookmark.comment %> "</p>
-      </div>
+  <% if @list.bookmarks.empty? %>
+    <div class="empty-folder d-flex justify-content-center align-items-center">
+      <%= image_tag 'empty-folder_2456758.png', alt: 'Empty folder picture' %>
     </div>
+  <% else %>
+    <% @list.bookmarks.each do |bookmark| %>
+      <div class="card-product">
+        <div class="flex-icon">
+        </div>
+        <img src="<%= bookmark.movie.poster_url %>" />
+        <div class="card-product-infos">
+          <h2><%= bookmark.movie.title %></h2>
+          <p>Rating: <strong><%= bookmark.movie.rating %></strong></p>
+          <p>" <%= bookmark.comment %> "</p>
+        </div>
+          <div class="trash-icon">
+              <%= link_to '🗑️', bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'no-underline' %>
+          </div>
+      </div>
+    <% end %>
   <% end %>
 </div>

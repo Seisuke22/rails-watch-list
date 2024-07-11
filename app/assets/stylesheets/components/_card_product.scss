@@ -17,6 +17,12 @@
   width: 50%;
 }
 
+.trash-icon {
+  margin-left: auto;
+  text-decoration: none;
+  padding-right: 15px;
+}
+
 .card-product img {
   height: 100%;
   width: 120px;
@@ -41,6 +47,8 @@
 
 .card-product .card-product-infos {
   padding: 16px;
+  flex: 1;
+  text-decoration: none;
 }
 
 .page-name h3 {
@@ -49,4 +57,8 @@
   color: white;
   border-left: 3px solid #00ACC1;
   padding-left: 10px;
+}
+
+.no-underline {
+  text-decoration: none;
 }

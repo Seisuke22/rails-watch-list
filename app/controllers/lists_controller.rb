@@ -16,9 +16,11 @@ class ListsController < ApplicationController
   def create
     @list = List.new(lists_params)
     if @list.save
+      flash[:notice] = "List was successfully created."
       redirect_to list_path(@list)
     else
-      render :new, status: :unprocessable_entity
+      flash[:alert] = "There was an error creating the list."
+      render :new
     end
   end
 
