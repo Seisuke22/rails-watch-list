@@ -48,14 +48,14 @@ response = http.request(request)
 movie_api = JSON.parse(response.read_body)
 puts movie_api
 
-# Movie.create!(
-#   title: movie_api["title"],
-#   overview: movie_api["overview"],
-#   poster_url: movie_api["poster_path"],
-#   genres: movie_api["genres"],
-#   production_companies: movies_api["production_companies"],
-#   production_country: movies_api["production_countries"],
-#   release_date_time: movies_api["release_date"]
-# )
+Movie.create!(
+  title: movie_api["title"],
+  overview: movie_api["overview"],
+  poster_url: movie_api["poster_path"],
+  genres: movie_api["genres"],
+  production_companies: movies_api["production_companies"],
+  production_country: movies_api["production_countries"],
+  release_date_time: movies_api["release_date"]
+)
 
 puts "Database seeded"
