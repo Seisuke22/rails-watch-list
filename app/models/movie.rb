@@ -1,8 +1,6 @@
 class Movie < ApplicationRecord
   has_many :bookmarks
 
-  serialize :images_url, Array
-
   validates :title, uniqueness: true
   validates :release_date_time, :overview, presence: true
   validates :overview, :overview, presence: true
