@@ -99,18 +99,19 @@ puts 'creating movies...'
   response = http.request(request)
   movie_overviews = JSON.parse(response.read_body)
   # puts JSON.pretty_generate(movie_overviews)
-  puts movie_overviews['data']['title']['releaseYear']['year']
+  # puts movie_overviews['data']['title']['releaseYear']['year']
 
   Movie.create!(
     title: movie_overviews['data']['title']['titleText'],
     overview: movie_overviews['data']['title']['plot']['plotText']['plainText'],
     poster_url: movie_overviews['data']['title']['primaryImage']['url'],
     rating: movie_overviews['data']['title']['metacritic']['metascore']['score'],
-    release_date_time: movie_overviews['data']['title']['releaseYear']['year'],
+    release_year: movie_overviews['data']['title']['releaseYear']['year'],
     runtime: movie_overviews['data']['title']['runtime']['seconds'],
     trailer_url: @playback_video_url,
     images_url: @array_of_images_urls
   )
+
 end
 puts 'finished!'
 puts 'Seeding Completed!'
