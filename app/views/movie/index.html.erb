@@ -1,0 +1,10 @@
+<div class="movies-container">
+<%= render 'movie/navbar' %>
+  <div class="movie-display">
+    <div class="movie-img-banner">
+      <% @movies.each do |movie| %>
+        <%= image_tag(movie.poster_url, alt: "Poster for #{movie.title}", class: "poster-banner-image") %>
+      <% end %>
+    </div>
+  </div>
+</div>
