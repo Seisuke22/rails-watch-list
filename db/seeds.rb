@@ -4,9 +4,11 @@ require 'uri'
 require 'net/http'
 
 # Cleans database
-puts "Cleaning Database"
+puts 'Seeding started ...'
+puts "Cleaning Database ..."
 Movie.destroy_all
 
+puts "Fetching 5 popular movie ids..."
 # Fetch 5 popular movie ids
 popular_movies_url = URI("https://imdb8.p.rapidapi.com/title/v2/get-popular-movies-by-genre?genre=adventure&limit=1")
 
@@ -19,14 +21,16 @@ request["x-rapidapi-host"] = 'imdb8.p.rapidapi.com'
 
 response = http.request(request)
 popular_movie_ids = JSON.parse(response.read_body)
-puts JSON.pretty_generate(popular_movie_ids)
+# puts JSON.pretty_generate(popular_movie_ids)
 
 @cleaned_ids = popular_movie_ids.map do |id|
   id.gsub('/title/', '').gsub('/', '')
 end
+puts "Finished!"
 
 # puts @cleaned_ids
 
+puts "Fetching trailer ids for every movies..."
 # Fetch Trailer id
 @cleaned_ids.each do |movie_id|
   movie_trailers_url = URI("https://imdb8.p.rapidapi.com/title/v2/get-trailers?tconst=#{movie_id}")
@@ -41,8 +45,9 @@ end
   @movie_trailer_url_ids << movie_trailer_url['data']['title']['primaryVideos']['edges'][0]['node']['id']
   # puts @movie_trailer_url_ids.inspect
 end
+puts "finished!"
 
-
+puts "fetcing trailer videos..."
 # Fetch Video using Trailer id
 @movie_trailer_url_ids.each do |movie_ids|
   play_back_movies = URI("https://imdb8.p.rapidapi.com/title/v2/get-video-playback?viconst=#{movie_ids}")
@@ -57,7 +62,9 @@ end
   @playback_video_url = playback_videos_url['data']['video']['playbackURLs'][1]['url']
   # puts @playback_video_url.inspect
 end
+puts "finished!"
 
+puts 'fetching 5 images for every movies... '
 # Fetch 5 Extra Images for Movie
 @cleaned_ids.each do |movie_ids|
   movie_image = URI("https://imdb8.p.rapidapi.com/title/v2/get-images?tconst=#{movie_ids}&first=5")
@@ -78,10 +85,11 @@ end
 
   # puts @array_of_images_urls.inspect
 end
+puts 'finished!'
 
 # Fetch the overviews of each movies
-puts "Overview Movie JSON"
-
+puts 'fetching overview for each movies...'
+puts 'creating movies...'
 @cleaned_ids.each do |movie_id|
   overview_details_url = URI("https://imdb8.p.rapidapi.com/title/v2/get-overview?tconst=#{movie_id}&country=US&language=en-US")
   request = Net::HTTP::Get.new(overview_details_url)
@@ -90,16 +98,20 @@ puts "Overview Movie JSON"
 
   response = http.request(request)
   movie_overviews = JSON.parse(response.read_body)
-  puts JSON.pretty_generate(movie_overviews)
+  # puts JSON.pretty_generate(movie_overviews)
+  # puts movie_overviews['data']['title']['releaseYear']['year']
 
   Movie.create!(
     title: movie_overviews['data']['title']['titleText'],
     overview: movie_overviews['data']['title']['plot']['plotText']['plainText'],
     poster_url: movie_overviews['data']['title']['primaryImage']['url'],
     rating: movie_overviews['data']['title']['metacritic']['metascore']['score'],
-    release_date_time: movie_overviews['data']['title']['releaseYear']['year'],
+    release_year: movie_overviews['data']['title']['releaseYear']['year'],
     runtime: movie_overviews['data']['title']['runtime']['seconds'],
     trailer_url: @playback_video_url,
-    images_url: @array_of_images_urls.each { |image_url_link| puts image_url_link}
+    images_url: @array_of_images_urls
   )
+
 end
+puts 'finished!'
+puts 'Seeding Completed!'
