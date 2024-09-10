@@ -1,31 +1,61 @@
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;  background-color: #2F3441;
-}
-
-li {
-  float: left;
-
-  a {
-  display: block;
+.overview-text {
   color: white;
-  text-align: center;
-  padding: 15px;
-  text-decoration: none;
-  }
+}
 
-  a:hover {
-    background-color: #111;
+.navbar-left {
+  background-color: #21242d;
+  width: 280px;
+  height: 100vh;
+
+  .add-watchlist-button {
+    display: flex;
+    justify-content: center;
+
+    button {
+      width: 226px;
+      height: 49px;
+      border-radius: 10px;
+    }
   }
 }
 
-.logo {
-  padding-left: 30px;
+.navbar-components {
+  padding-left: 35px;
 }
 
-.active {
-  padding: 0px;
-  padding-top: 3px;
+#web-name{
+  width: fit-content;
+  color: white;
+  padding-top: 25px;
+  padding-right: 10px;
+  padding-bottom: 40px;
+}
+
+.navbar-category {
+  width: max-content;
+  padding-bottom: 20px;
+
+  .category-name {
+    color: gray;
+    padding-bottom: 10px;
+  }
+
+  .text-components {
+    color: white;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 10px;
+    font-size: larger;
+    font-weight: 900;
+  }
+
+  h5 {
+    color: gray;
+    padding-bottom: 5px;
+    font-weight: bolder;
+  }
+
+  i {
+    padding-right: 8px;
+  }
 }
