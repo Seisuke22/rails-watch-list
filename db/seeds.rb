@@ -89,7 +89,7 @@ puts 'finished!'
 
 # Fetch the overviews of each movies
 puts 'fetching overview for each movies...'
-puts 'cresting movies...'
+puts 'creating movies...'
 @cleaned_ids.each do |movie_id|
   overview_details_url = URI("https://imdb8.p.rapidapi.com/title/v2/get-overview?tconst=#{movie_id}&country=US&language=en-US")
   request = Net::HTTP::Get.new(overview_details_url)
@@ -99,6 +99,7 @@ puts 'cresting movies...'
   response = http.request(request)
   movie_overviews = JSON.parse(response.read_body)
   # puts JSON.pretty_generate(movie_overviews)
+  puts movie_overviews['data']['title']['releaseYear']['year']
 
   Movie.create!(
     title: movie_overviews['data']['title']['titleText'],

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_10_045639) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_10_051513) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -68,7 +68,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_10_045639) do
     t.string "genres"
     t.string "production_companies"
     t.string "production_country"
-    t.datetime "release_date_time"
+    t.integer "release_year"
     t.integer "runtime"
     t.string "trailer_url"
     t.string "images_url", default: [], array: true
