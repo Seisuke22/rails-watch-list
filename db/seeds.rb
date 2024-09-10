@@ -102,7 +102,7 @@ puts 'creating movies...'
   # puts movie_overviews['data']['title']['releaseYear']['year']
 
   Movie.create!(
-    title: movie_overviews['data']['title']['titleText'],
+    title: movie_overviews['data']['title']['titleText']['text'],
     overview: movie_overviews['data']['title']['plot']['plotText']['plainText'],
     poster_url: movie_overviews['data']['title']['primaryImage']['url'],
     rating: movie_overviews['data']['title']['metacritic']['metascore']['score'],
