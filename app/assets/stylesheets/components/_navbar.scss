@@ -6,6 +6,11 @@
   background-color: #21242d;
   width: 280px;
   height: 100vh;
+  position: sticky;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
 
   .add-watchlist-button {
     display: flex;
