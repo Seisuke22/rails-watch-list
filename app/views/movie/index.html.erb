@@ -1,10 +1,19 @@
 <div class="movies-container">
-<%= render 'movie/navbar' %>
+  <%= render 'movie/navbar' %>
   <div class="movie-display">
     <div class="movie-img-banner">
-      <% @movies.each do |movie| %>
-        <%= image_tag(movie.poster_url, alt: "Poster for #{movie.title}", class: "poster-banner-image") %>
-      <% end %>
+      <h1>Your Banner Title</h1>
+      <p>Some description or additional content here</p>
+    </div>
+    <div class="cards-container">
+        <div>
+          <h1>Popular Movies</h1>
+          <% @movies.each do |movie| %>
+            <%= image_tag(movie.poster_url, alt: movie.title, class: 'movie-poster') %>
+           <% end %>
+        </div>
+    </div>
+      </div>
     </div>
   </div>
 </div>

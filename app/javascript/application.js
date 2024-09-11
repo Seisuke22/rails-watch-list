@@ -3,3 +3,5 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "bootstrap"
 import "@popperjs/core"
+import Swiper from 'swiper/bundle';
+import 'swiper/swiper-bundle.min.css';
