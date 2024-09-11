@@ -9,33 +9,16 @@
   flex-direction: column;
 }
 
-.movie-img-banner {
-  display: flex;
-  justify-content: center;
+.cards-container {
   width: 100%;
-  max-height: 30%;
-  overflow: hidden;
-  position: relative;
-  padding-top: 90px;
-}
-
-.poster-banner-image {
-  width: 90%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 15px;
-}
-
-.card-container{
+  padding: 10px;
+  color: white;
   display: flex;
-  padding-left: 45px;
-  padding-top: 35px;
-
-  .card-titles{
-    color: white;
-  }
+  flex-direction: column;
 }
 
-.movie-cards {
-
+.movie-poster {
+  width: 300px;
+  height: 400px;
+  border-radius: 10px;
 }
