@@ -16,7 +16,7 @@
   max-height: 30%;
   overflow: hidden;
   position: relative;
-  top: 90px;
+  padding-top: 90px;
 }
 
 .poster-banner-image {
@@ -24,4 +24,18 @@
   height: auto;
   object-fit: cover;
   border-radius: 15px;
+}
+
+.card-container{
+  display: flex;
+  padding-left: 45px;
+  padding-top: 35px;
+
+  .card-titles{
+    color: white;
+  }
+}
+
+.movie-cards {
+
 }

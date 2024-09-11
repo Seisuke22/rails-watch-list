@@ -8,9 +8,9 @@ puts 'Seeding started ...'
 puts "Cleaning Database ..."
 Movie.destroy_all
 
-puts "Fetching 5 popular movie ids..."
+puts "Fetching 10 popular movie ids..."
 # Fetch 5 popular movie ids
-popular_movies_url = URI("https://imdb8.p.rapidapi.com/title/v2/get-popular-movies-by-genre?genre=adventure&limit=1")
+popular_movies_url = URI("https://imdb8.p.rapidapi.com/title/v2/get-popular-movies-by-genre?genre=adventure&limit=10")
 
 http = Net::HTTP.new(popular_movies_url.host, popular_movies_url.port)
 http.use_ssl = true
@@ -26,9 +26,10 @@ popular_movie_ids = JSON.parse(response.read_body)
 @cleaned_ids = popular_movie_ids.map do |id|
   id.gsub('/title/', '').gsub('/', '')
 end
+puts "All Fetched movie ids:"
+puts @cleaned_ids.inspect
 puts "Finished!"
 
-# puts @cleaned_ids
 
 puts "Fetching trailer ids for every movies..."
 # Fetch Trailer id
@@ -41,10 +42,16 @@ puts "Fetching trailer ids for every movies..."
   response = http.request(request)
   movie_trailer_url = JSON.parse(response.read_body)
   # puts JSON.pretty_generate(movie_trailer_url)
-  @movie_trailer_url_ids = []
-  @movie_trailer_url_ids << movie_trailer_url['data']['title']['primaryVideos']['edges'][0]['node']['id']
-  # puts @movie_trailer_url_ids.inspect
+  empty_url_id_check = movie_trailer_url['data']['title']['primaryVideos']['edges']
+  if empty_url_id_check.empty?
+    puts 'No Available Trailer for' + " " + "#{movie_id}"
+  else
+    @movie_trailer_url_ids = []
+    @movie_trailer_url_ids << movie_trailer_url['data']['title']['primaryVideos']['edges'][0]['node']['id']
+  end
+  puts @movie_trailer_url_ids.inspect
 end
+puts 'All Fetched Movie Trailer ids'
 puts "finished!"
 
 puts "fetcing trailer videos..."
@@ -100,18 +107,28 @@ puts 'creating movies...'
   movie_overviews = JSON.parse(response.read_body)
   # puts JSON.pretty_generate(movie_overviews)
   # puts movie_overviews['data']['title']['releaseYear']['year']
+  movie_title = movie_overviews.dig('data', 'title', 'titleText', 'text')
+  movie_overview = movie_overviews.dig('data', 'title', 'plot', 'plotText', 'plainText')
+  movie_poster_url = movie_overviews.dig('data', 'title', 'primaryImage', 'url')
+  movie_release_year = movie_overviews.dig('data', 'title', 'releaseYear', 'year')
+  movie_runtime = movie_overviews.dig('data', 'title', 'runtime', 'seconds')
+  movie_rating = movie_overviews.dig('data', 'title', 'metacritic', 'metascore', 'score')
 
+  # Check if there's no metascore on a movie
+  # no_rating_check = movie_overviews['data']['title']['metacritic']['metascore']
+  if movie_rating.nil?
+    puts "No Rating for #{movie_id}"
+  end
   Movie.create!(
-    title: movie_overviews['data']['title']['titleText']['text'],
-    overview: movie_overviews['data']['title']['plot']['plotText']['plainText'],
-    poster_url: movie_overviews['data']['title']['primaryImage']['url'],
-    rating: movie_overviews['data']['title']['metacritic']['metascore']['score'],
-    release_year: movie_overviews['data']['title']['releaseYear']['year'],
-    runtime: movie_overviews['data']['title']['runtime']['seconds'],
+    title: movie_title,
+    overview: movie_overview,
+    poster_url: movie_poster_url,
+    rating: movie_rating,
+    release_year: movie_release_year,
+    runtime: movie_runtime,
     trailer_url: @playback_video_url,
     images_url: @array_of_images_urls
   )
-
 end
 puts 'finished!'
 puts 'Seeding Completed!'
