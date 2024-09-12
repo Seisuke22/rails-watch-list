@@ -1,0 +1,38 @@
+<div class="show-container">
+  <div class="show-navbar">
+    <h2>Watchlist Tracker</h2>
+    <div class="show-navbar-text">
+      <p>Home</p>
+      <p>Movies</p>
+    </div>
+    <input type="text" class="search-bar" placeholder="Search...">
+    <button type="button" class="signin-button signin-button"><strong>Sign in</strong></button>
+    <button type="button" class="signup-button btn btn-primary"><strong>Sign Up</strong></button>
+  </div>
+  <hr>
+  <div class="overview-container">
+    <div class="visual-info">
+      <%= image_tag(@movie.poster_url, class: 'show-movie-poster') %>
+      <button type="button" class="trailer-button btn"><strong>Trailer</strong></button>
+      <button type="button" class="trailer-button btn"><strong>Add To Watchlist</strong></button>
+    </div>
+    <div class="text-info">
+      <div class="show-text">
+        <div class="upper-text">
+          <h1><%= @movie.title %></h1>
+          <button type="button" class="trailer-button btn"><strong>Watch</strong></button>
+        </div>
+          <div class="lower-text">
+            <h3>Overview</h3>
+            <%= @movie.overview %>
+          </div>
+      </div>
+      <div class="more-details">
+      <p>Rating <%= @movie.rating %></p>
+      <p>Rating <%= @movie.rating %></p>
+      <p>Rating <%= @movie.rating %></p>
+      <p>Rating <%= @movie.rating %></p>
+      </div>
+    </div>
+  </div>
+</div>

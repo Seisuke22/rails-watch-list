@@ -1,0 +1,45 @@
+.show-movie-poster {
+  width: 450px;
+  height: 550px;
+  border-radius: 15px;
+}
+
+.overview-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding-top: 20px;
+}
+
+.visual-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+}
+
+.text-info {
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+  align-items: flex-start;
+}
+
+.show-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.upper-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.lower-text {
+  width: 60%;
+}
+
+.trailer-button {
+  margin-top: 10px;
+}
