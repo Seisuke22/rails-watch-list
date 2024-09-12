@@ -17,12 +17,18 @@
 
 .movie-cards {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* Creates 4 equal-width columns */
-  gap: 13px; /* Sets equal gap between grid items */
+  grid-template-columns: repeat(5, 1fr);
+  gap: 13px;
 }
 
 .movie-poster {
-  width: 100%; /* Make the poster width fill the column */
-  height: 345px; /* Maintain aspect ratio */
+  width: 100%;
+  height: 345px;
   border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.movie-poster:hover {
+  transform: scale(1.1);
+  z-index: 1;
 }
