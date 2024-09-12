@@ -2,17 +2,55 @@
   <%= render 'movie/navbar' %>
   <div class="movie-display">
     <div class="movie-img-banner">
-      <h1>Your Banner Title</h1>
-      <p>Some description or additional content here</p>
+      <h1>Watchlist Tracker</h1>
+      <p>Your Personalize Watchlist Tracker with over thousands of movies available.</p>
     </div>
     <div class="cards-container">
-        <div>
-          <h1>Popular Movies</h1>
-          <% @movies.each do |movie| %>
-            <%= image_tag(movie.poster_url, alt: movie.title, class: 'movie-poster') %>
-           <% end %>
-        </div>
+        <h1>Popular Movies</h1>
+      <div class="movie-cards">
+        <% @movies.sample(5).each do |movie| %>
+          <%= image_tag(movie.poster_url, alt: movie.title, class: 'movie-poster') %>
+          <% end %>
+      </div>
     </div>
+    <div class="cards-container">
+      <h1>Top Rated Movies</h1>
+      <div class="movie-cards">
+        <% @movies.sample(5).each do |movie| %>
+          <%= image_tag(movie.poster_url, alt: movie.title, class: 'movie-poster') %>
+          <% end %>
+      </div>
+    </div>
+    <div class="cards-container">
+      <h1>Random Movies You'll Love</h1>
+      <div class="movie-cards">
+        <% @movies.sample(5).each do |movie| %>
+          <%= image_tag(movie.poster_url, alt: movie.title, class: 'movie-poster') %>
+          <% end %>
+      </div>
+    </div>
+    <div class="cards-container">
+      <h1>Discover Movies</h1>
+      <div class="movie-cards">
+        <% @movies.sample(5).each do |movie| %>
+          <%= image_tag(movie.poster_url, alt: movie.title, class: 'movie-poster') %>
+          <% end %>
+      </div>
+    </div>
+    <div class="project-info">
+      <div class="column-info">
+        <h2><i class="fa-solid fa-address-book"></i> Contacts</h2>
+        <ul><i class="fa-brands fa-linkedin"></i> Linkedin</ul>
+        <ul><i class="fa-brands fa-github"></i> Github</ul>
+        <ul><i class="fa-solid fa-envelope"></i> Email</ul>
+      </div>
+      <div class="column-info">
+        <h2><i class="fa-brands fa-stack-overflow"></i> Stacks Used</h2>
+        <ul>Ruby on Rails</ul>
+        <ul>JavaScript/Stimulus</ul>
+        <ul>HTML</ul>
+        <ul>CSS</ul>
+        <ul>Heroku</ul>
       </div>
     </div>
   </div>
