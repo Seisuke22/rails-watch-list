@@ -11,14 +11,18 @@
 
 .cards-container {
   width: 100%;
-  padding: 10px;
+  padding: 50px;
   color: white;
-  display: flex;
-  flex-direction: column;
+}
+
+.movie-cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Creates 4 equal-width columns */
+  gap: 13px; /* Sets equal gap between grid items */
 }
 
 .movie-poster {
-  width: 300px;
-  height: 400px;
+  width: 100%; /* Make the poster width fill the column */
+  height: 345px; /* Maintain aspect ratio */
   border-radius: 10px;
 }
