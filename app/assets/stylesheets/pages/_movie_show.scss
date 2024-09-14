@@ -1,7 +1,27 @@
+.show-container {
+  h1 {
+    color: white;
+  }
+
+  h2 {
+    color: white;
+  }
+
+  h3 {
+    color: white;
+  }
+
+  p {
+    color: white;
+  }
+
+
+}
 .show-movie-poster {
-  width: 450px;
+  width: 430px;
   height: 550px;
   border-radius: 15px;
+  margin-bottom: 20px;
 }
 
 .overview-container {
@@ -23,6 +43,7 @@
   flex-direction: column;
   flex: 2;
   align-items: flex-start;
+  color: white;
 }
 
 .show-text {
@@ -38,8 +59,30 @@
 
 .lower-text {
   width: 60%;
+  margin-bottom: 30px;
+}
+
+.more-details {
+  display: grid;
+  grid-template-columns: 150px auto;
+  gap: 10px;
+}
+
+.more-details p {
+  display: contents;
+}
+
+.more-details span {
+  margin-left: 0;
+}
+
+
+.overview-info {
+  padding-left: 20px;
 }
 
 .trailer-button {
   margin-top: 10px;
+  width: 430px;
+  border-radius: 15px;
 }

@@ -20,18 +20,22 @@
       <div class="show-text">
         <div class="upper-text">
           <h1><%= @movie.title %></h1>
-          <button type="button" class="trailer-button btn"><strong>Watch</strong></button>
+          <button type="button" class="trailer-button btn" style="width: 380px;"><strong>Watch</strong></button>
         </div>
           <div class="lower-text">
             <h3>Overview</h3>
-            <%= @movie.overview %>
+            <p><%= @movie.overview %></p>
           </div>
       </div>
       <div class="more-details">
-        <p>Rating <%= @movie.rating %></p>
-        <p>Rating <%= @movie.rating %></p>
-        <p>Rating <%= @movie.rating %></p>
-        <p>Rating <%= @movie.rating %></p>
+        <p>Rating <span class="rating-value"><%= @movie.rating %></span></p>
+        <p>Release Year <span class="release-year"><%= @movie.release_year %></span></p>
+        <p>Genres <span class="genres"><%= @movie.genres %></span></p>
+        <p>Duration <span class="duration"><%= @movie.runtime %></span></p>
+      </div>
+    </div>
+    <div class="actor-container">
+      <div class="actor-cards">
       </div>
     </div>
   </div>
