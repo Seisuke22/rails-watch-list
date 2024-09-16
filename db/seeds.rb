@@ -71,26 +71,27 @@ puts "fetcing trailer videos..."
 end
 puts "finished!"
 
-puts 'fetching 5 images for every movies... '
-# Fetch 5 Extra Images for Movie
-@cleaned_ids.each do |movie_ids|
-  movie_image = URI("https://imdb8.p.rapidapi.com/title/v2/get-images?tconst=#{movie_ids}&first=5")
-  request = Net::HTTP::Get.new(movie_image)
+puts 'fetching Movie actors with images... '
+# Fetch Movie Actors with image
+@cleaned_ids.each do |movie_id|
+  movie_actors = URI("https://imdb8.p.rapidapi.com/title/v2/get-full-cast-and-crew?tconst=#{movie_id}&first=5&country=US&language=en-US")
+  request = Net::HTTP::Get.new(movie_actors)
   request["x-rapidapi-key"] = 'a3253ec5e2msh1b3a64110b486e2p18c5f7jsne048d510e7d7'
   request["x-rapidapi-host"] = 'imdb8.p.rapidapi.com'
 
-  response = http.request(request)
-  movie_image_json = JSON.parse(response.read_body)
-  # puts JSON.pretty_generate(movie_image_url)
-  image_nodes = movie_image_json['data']['title']['images']['edges']
+  respone = http.request(request)
+  movie_actor = JSON.parse(respone.read_body)
 
-  @array_of_images_urls = []
+  actors = movie_actor.dig('data', 'title', 'credits', 'edges')
 
-  image_nodes.each do |image_urls|
-    @array_of_images_urls << image_urls['node']['url']
+  # fetcing names
+  @names = actors.each do |name|
+    name.dig('node', 'name', 'nameText')
   end
 
-  # puts @array_of_images_urls.inspect
+  @images = actors.each do |image|
+    image.dig('node', 'name', 'primaryImage', 'url')
+  end
 end
 puts 'finished!'
 
@@ -127,7 +128,9 @@ puts 'creating movies...'
     release_year: movie_release_year,
     runtime: movie_runtime,
     trailer_url: @playback_video_url,
-    images_url: @array_of_images_urls
+    images_url: @array_of_images_urls,
+    actor_name: @names,
+    actor_image: @images
   )
 end
 puts 'finished!'
