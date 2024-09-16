@@ -49,7 +49,6 @@ puts "Fetching trailer ids for every movies..."
     @movie_trailer_url_ids = []
     @movie_trailer_url_ids << movie_trailer_url['data']['title']['primaryVideos']['edges'][0]['node']['id']
   end
-  puts @movie_trailer_url_ids.inspect
 end
 puts 'All Fetched Movie Trailer ids'
 puts "finished!"
@@ -79,17 +78,17 @@ puts 'fetching Movie actors with images... '
   request["x-rapidapi-key"] = 'a3253ec5e2msh1b3a64110b486e2p18c5f7jsne048d510e7d7'
   request["x-rapidapi-host"] = 'imdb8.p.rapidapi.com'
 
-  respone = http.request(request)
-  movie_actor = JSON.parse(respone.read_body)
+  response = http.request(request)
+  movie_actor = JSON.parse(response.read_body)
 
-  actors = movie_actor.dig('data', 'title', 'credits', 'edges')
+  @actors = movie_actor.dig('data', 'title', 'credits', 'edges')
 
   # fetcing names
-  @names = actors.each do |name|
-    name.dig('node', 'name', 'nameText')
+  @names = @actors.map do |name|
+    name.dig('node', 'name', 'nameText', 'text')
   end
 
-  @images = actors.each do |image|
+  @images = @actors.map do |image|
     image.dig('node', 'name', 'primaryImage', 'url')
   end
 end
@@ -128,7 +127,6 @@ puts 'creating movies...'
     release_year: movie_release_year,
     runtime: movie_runtime,
     trailer_url: @playback_video_url,
-    images_url: @array_of_images_urls,
     actor_name: @names,
     actor_image: @images
   )
