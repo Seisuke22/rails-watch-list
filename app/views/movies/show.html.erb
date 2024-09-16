@@ -36,6 +36,9 @@
     </div>
     <div class="actor-container">
       <div class="actor-cards">
+        <% @movie.actor_name.each do |actors_name| %>
+          <p>  <%= actors_name %> </p>
+        <% end %>
       </div>
     </div>
   </div>

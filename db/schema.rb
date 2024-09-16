@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_16_055555) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_16_131622) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -72,8 +72,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_16_055555) do
     t.integer "runtime"
     t.string "trailer_url"
     t.string "images_url", default: [], array: true
-    t.string "actor_name"
-    t.string "actor_image"
+    t.string "actor_name", default: [], array: true
+    t.string "actor_image", default: [], array: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

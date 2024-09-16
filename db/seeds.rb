@@ -27,7 +27,7 @@ popular_movie_ids = JSON.parse(response.read_body)
   id.gsub('/title/', '').gsub('/', '')
 end
 puts "All Fetched movie ids:"
-puts @cleaned_ids.inspect
+# puts @cleaned_ids.inspect
 puts "Finished!"
 
 
@@ -49,7 +49,6 @@ puts "Fetching trailer ids for every movies..."
     @movie_trailer_url_ids = []
     @movie_trailer_url_ids << movie_trailer_url['data']['title']['primaryVideos']['edges'][0]['node']['id']
   end
-  puts @movie_trailer_url_ids.inspect
 end
 puts 'All Fetched Movie Trailer ids'
 puts "finished!"
@@ -71,34 +70,27 @@ puts "fetcing trailer videos..."
 end
 puts "finished!"
 
-puts 'fetching Movie actors with images... '
-# Fetch Movie Actors with image
+
+# Fetch the overviews of each movies
+puts 'fetching overview and actors for each movies...'
+puts 'creating movies...'
 @cleaned_ids.each do |movie_id|
+  # Fetch actors for this movie
   movie_actors = URI("https://imdb8.p.rapidapi.com/title/v2/get-full-cast-and-crew?tconst=#{movie_id}&first=5&country=US&language=en-US")
   request = Net::HTTP::Get.new(movie_actors)
   request["x-rapidapi-key"] = 'a3253ec5e2msh1b3a64110b486e2p18c5f7jsne048d510e7d7'
   request["x-rapidapi-host"] = 'imdb8.p.rapidapi.com'
 
-  respone = http.request(request)
-  movie_actor = JSON.parse(respone.read_body)
+  response = http.request(request)
+  movie_actor = JSON.parse(response.read_body)
 
   actors = movie_actor.dig('data', 'title', 'credits', 'edges')
 
-  # fetcing names
-  @names = actors.each do |name|
-    name.dig('node', 'name', 'nameText')
-  end
+  # Fetching names and images within the same loop
+  names = actors.map { |actor| actor.dig('node', 'name', 'nameText', 'text') }
+  images = actors.map { |actor| actor.dig('node', 'name', 'primaryImage', 'url') }
 
-  @images = actors.each do |image|
-    image.dig('node', 'name', 'primaryImage', 'url')
-  end
-end
-puts 'finished!'
-
-# Fetch the overviews of each movies
-puts 'fetching overview for each movies...'
-puts 'creating movies...'
-@cleaned_ids.each do |movie_id|
+  # Fetch overview and other details for the movie
   overview_details_url = URI("https://imdb8.p.rapidapi.com/title/v2/get-overview?tconst=#{movie_id}&country=US&language=en-US")
   request = Net::HTTP::Get.new(overview_details_url)
   request["x-rapidapi-key"] = 'a3253ec5e2msh1b3a64110b486e2p18c5f7jsne048d510e7d7'
@@ -106,8 +98,7 @@ puts 'creating movies...'
 
   response = http.request(request)
   movie_overviews = JSON.parse(response.read_body)
-  # puts JSON.pretty_generate(movie_overviews)
-  # puts movie_overviews['data']['title']['releaseYear']['year']
+
   movie_title = movie_overviews.dig('data', 'title', 'titleText', 'text')
   movie_overview = movie_overviews.dig('data', 'title', 'plot', 'plotText', 'plainText')
   movie_poster_url = movie_overviews.dig('data', 'title', 'primaryImage', 'url')
@@ -115,11 +106,6 @@ puts 'creating movies...'
   movie_runtime = movie_overviews.dig('data', 'title', 'runtime', 'seconds')
   movie_rating = movie_overviews.dig('data', 'title', 'metacritic', 'metascore', 'score')
 
-  # Check if there's no metascore on a movie
-  # no_rating_check = movie_overviews['data']['title']['metacritic']['metascore']
-  if movie_rating.nil?
-    puts "No Rating for #{movie_id}"
-  end
   Movie.create!(
     title: movie_title,
     overview: movie_overview,
@@ -128,10 +114,10 @@ puts 'creating movies...'
     release_year: movie_release_year,
     runtime: movie_runtime,
     trailer_url: @playback_video_url,
-    images_url: @array_of_images_urls,
-    actor_name: @names,
-    actor_image: @images
+    actor_name: names,
+    actor_image: images
   )
 end
+
 puts 'finished!'
 puts 'Seeding Completed!'
