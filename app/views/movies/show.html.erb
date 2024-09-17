@@ -33,13 +33,18 @@
         <p>Genres <span class="genres"><%= @movie.genres %></span></p>
         <p>Duration <span class="duration"><%= @movie.runtime %></span></p>
       </div>
-    </div>
     <div class="actor-container">
+      <h3>Top Casts</h3>
       <div class="actor-cards">
-        <% @movie.actor_name.each do |actors_name| %>
-          <p>  <%= actors_name %> </p>
+        <% @movie.actor_image.each_with_index do |actors_image, index| %>
+          <div class="actor-card">
+            <%= image_tag("#{actors_image}", alt: "Actor Image", class: "actor-images") %>
+            <p><%= @movie.actor_name[index] %></p>
+          </div>
         <% end %>
       </div>
+    </div>
+
     </div>
   </div>
 </div>
