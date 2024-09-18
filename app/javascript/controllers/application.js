@@ -1,9 +1,15 @@
-import { Application } from "@hotwired/stimulus"
-
-const application = Application.start()
+import { Application } from "@hotwired/stimulus";
+import { Turbo } from "@hotwired/turbo-rails"; // Import Turbo
+import { Rails } from "@rails/ujs";
+const application = Application.start();
 
 // Configure Stimulus development experience
-application.debug = false
-window.Stimulus   = application
+application.debug = false;
+window.Stimulus = application;
 
-export { application }
+// Start Turbo
+Turbo.start();
+Rails.start();
+
+export { application };
+import Rails from "@rails/ujs";
