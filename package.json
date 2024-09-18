@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@hotwired/turbo-rails": "^8.0.9",
     "swiper": "^11.1.12"
   }
 }
