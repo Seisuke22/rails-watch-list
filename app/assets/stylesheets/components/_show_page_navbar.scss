@@ -14,7 +14,7 @@
 }
 
 .show-navbar h2 {
-  padding-left: 35px;
+  padding-left: 20px;
 }
 
 .show-navbar-text {
@@ -25,6 +25,17 @@
   p {
     padding-right: 35px;
   }
+
+}
+
+.navbar-texts-show {
+  text-decoration: none;
+  color: white;
+  transition: transform 0.3s ease;
+}
+.navbar-texts-show:hover {
+  transform: scale(1.1);
+  z-index: 1;
 }
 
 .search-bar {
