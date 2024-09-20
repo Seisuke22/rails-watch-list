@@ -6,7 +6,7 @@
 
 <div class="form">
   <div class="form-size">
-    <%= simple_form_for [@list, @bookmark] do |t| %>
+    <%= simple_form_for [@list || @movie, @bookmark] do |t| %>
       <div class="text-area">
         <div class="text"><%= t.input :comment %></div>
         <div class="text"><%= t.association :movie %></div>
