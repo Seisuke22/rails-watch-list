@@ -14,7 +14,7 @@
     <div class="visual-info">
       <%= image_tag(@movie.poster_url, class: 'show-movie-poster') %>
       <button type="button" class="trailer-button btn"><strong>Trailer</strong></button>
-      <button type="button" class="trailer-button btn"><strong>Add To Watchlist</strong></button>
+      <%= link_to "Add to Bookmark", new_movie_bookmark_path(@movie) %>
     </div>
     <div class="text-info">
       <div class="show-text">
