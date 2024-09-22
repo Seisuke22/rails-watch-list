@@ -21,7 +21,7 @@
           <p>" <%= bookmark.comment %> "</p>
         </div>
           <div class="trash-icon">
-              <%= link_to '🗑️', movie_bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'no-underline' %>
+            <%= button_to '🗑️', list_bookmark_path(@list, bookmark), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: 'no-underline' %>
           </div>
       </div>
     <% end %>

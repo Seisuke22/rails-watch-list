@@ -38,6 +38,18 @@ class BookmarksController < ApplicationController
     end
   end
 
+  def destroy
+    @list = List.find(params[:list_id])
+    @bookmark = Bookmark.find(params[:id])
+    @movie = @bookmark.movie # Fetch the associated movie for redirection
+    if @bookmark.destroy
+      redirect_to list_path(@list), notice: "Bookmark successfully deleted"
+    else
+      redirect_to list_path(@list), alert: "There was an error deleting the bookmark"
+    end
+  end
+
+
 
   private
 
