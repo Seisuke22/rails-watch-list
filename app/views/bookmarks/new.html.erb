@@ -14,9 +14,8 @@
             <%= t.hidden_field :list_id, value: params[:list_id] %>
             <% @list = List.find(params[:list_id]) if @list.nil? %>
             <p>Adding to: <%= @list.name if @list %></p>
-          <% elsif %>
-            <%= t.hidden_field :id, value: params[:id] %>
-            <% @movie = Movie.find(params[:id]) if @movie.nil? %>
+          <% else %>
+            <% @movie = Movie.find(params[:movie_id])%>
             <p>Adding to: <%= @movie.title if @movie %></p>
             <%= t.input :list_id, collection: List.all, label_method: :name, value_method: :id, prompt: 'Select a List' %>
           <% end %>
