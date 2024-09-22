@@ -14,11 +14,13 @@
             <%= t.hidden_field :list_id, value: params[:list_id] %>
             <% @list = List.find(params[:list_id]) if @list.nil? %>
             <p>Adding to: <%= @list.name if @list %></p>
+            <%= t.input :movie_id, collection: Movie.all, label_method: :title, value_method: :id, prompt: 'Select a Movie' %>
           <% else %>
+            <% @movie = Movie.find(params[:movie_id])%>
+            <p>Adding to: <%= @movie.title if @movie %></p>
             <%= t.input :list_id, collection: List.all, label_method: :name, value_method: :id, prompt: 'Select a List' %>
           <% end %>
         </div>
-        <div class="text"><%= t.association :movie %></div>
       </div>
       <%= t.submit "Add", class: "btn btn-dark-blue" %>
     <% end %>
