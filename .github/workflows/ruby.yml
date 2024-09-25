@@ -47,7 +47,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ' 3.1.2p20' # needs to be inside quotes
+          ruby-version: '3.1.2p20' # needs to be inside quotes
       - name: Install dependencies
         run: bundle install
       - name: Create DB
