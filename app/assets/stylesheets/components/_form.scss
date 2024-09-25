@@ -1,14 +1,72 @@
 .form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: linear-gradient(to bottom right, #30477a 0%, #111827 100%);
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
 }
 
 .form-size {
-  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.text-area {
+}
+
+.mb-3.select.optional.bookmark_list_id {
+  padding-top: 10px;
+  padding-bottom: 30px;
 }
 
 .form .form-size .text-area .text label {
   color: white;
+}
 
+.form-label.select.optional {
+  color: white;
+}
+
+.show-movie-poster-form {
+  width: 400px;
+  height: 500px;
+  border-radius: 15px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: start;
+  padding-top: 50px;
+}
+
+.new-form-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.new-form-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 450px;
+}
+
+.text-area .text label {
+  color: white;
+}
+
+.action-title {
+  color: white;
+  border-left: 3px solid #00acc1;
+  padding-left: 10px;
+}
+
+strong {
+  color: white;
+}
+
+.movie-to-add {
+  color: gray;
 }

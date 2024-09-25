@@ -1,28 +1,44 @@
-<%= render 'navbar' %>
-
-<div class="page-name">
-  <h3>Bookmark a Movie</h3>
-</div>
-
 <div class="form">
+  <div class="show-navbar">
+    <h2>Watchlist Tracker</h2>
+    <div class="show-navbar-text">
+      <p><%= link_to "Home", root_path, class: "show_navbar_text" %></p>
+      <p>Movies</p>
+      <p>My lists</p>
+    </div>
+    <input type="text" class="search-bar" placeholder="Search...">
+    <button type="button" class="signin-button signin-button"><strong>Sign in</strong></button>
+    <button type="button" class="signup-button btn btn-primary"><strong>Sign Up</strong></button>
+  </div>
+  <hr>
   <div class="form-size">
     <%= simple_form_for [@movie || @list, @bookmark] do |t| %>
       <div class="text-area">
-        <div class="text"><%= t.input :comment %></div>
-        <div class="text">
-          <% if params[:list_id] %>
-            <%= t.hidden_field :list_id, value: params[:list_id] %>
+        <% if params[:list_id] %>
+          <div class="new-form">
             <% @list = List.find(params[:list_id]) if @list.nil? %>
             <p>Adding to: <%= @list.name if @list %></p>
             <%= t.input :movie_id, collection: Movie.all, label_method: :title, value_method: :id, prompt: 'Select a Movie' %>
-          <% else %>
-            <% @movie = Movie.find(params[:movie_id])%>
-            <p>Adding to: <%= @movie.title if @movie %></p>
-            <%= t.input :list_id, collection: List.all, label_method: :name, value_method: :id, prompt: 'Select a List' %>
-          <% end %>
-        </div>
+            <%= t.input :comment %>
+            <%= t.submit "Add", class: "btn btn-dark-blue" %>
+          </div>
+        <% else %>
+          <div class="grid-container">
+            <div class="new-form-left">
+              <% @movie = Movie.find(params[:movie_id]) %>
+              <%= image_tag(@movie.poster_url, class: 'show-movie-poster-form') %>
+              <h3> <strong><%= @movie.title if @movie %></strong></h3>
+            </div>
+            <div class="new-form-right">
+              <h2 class="action-title">Bookmark a Movie</h2>
+               <p class="movie-to-add">Movie to add: <strong><%= @movie.title if @movie %></strong></p>
+              <%= t.input :list_id, collection: List.all, label_method: :name, value_method: :id, prompt: 'Select a List' %>
+              <%= t.input :comment %>
+              <%= t.submit "Add", class: "btn btn-dark-blue" %>
+            </div>
+          </div>
+        <% end %>
       </div>
-      <%= t.submit "Add", class: "btn btn-dark-blue" %>
     <% end %>
   </div>
 </div>
