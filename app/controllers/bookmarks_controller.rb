@@ -29,8 +29,7 @@ class BookmarksController < ApplicationController
       flash[:notice] = "Bookmark was successfully created."
       redirect_to list_path(@bookmark.list_id)
     else
-      byebug
-      flash[:alert] = "There was an error creating the bookmark."
+      flash[:alert] = "#{@bookmark.movie.title} is already in your watchlist"
       render :new
     end
   end
