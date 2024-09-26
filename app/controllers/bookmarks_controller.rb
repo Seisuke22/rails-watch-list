@@ -14,7 +14,7 @@ class BookmarksController < ApplicationController
     end
 
     # Check and assign list if provided
-    if List.find(params[:list_id]).present?
+    if params[:list_id].present?
       @list = List.find(params[:list_id])
       if @list.nil?
         flash[:alert] = "List not found."
@@ -22,17 +22,14 @@ class BookmarksController < ApplicationController
       else
         @bookmark.list = @list
       end
-    else
-      flash[:alert] = "Please select a list to add the bookmark."
-      redirect_to lists_path and return
     end
 
     # Attempt to save the bookmark
     if @bookmark.save
       flash[:notice] = "Bookmark was successfully created."
-      redirect_to list_path(@list)
+      redirect_to list_path(@bookmark.list_id)
     else
-      flash[:alert] = "There was an error creating the bookmark."
+      flash[:alert] = "#{@bookmark.movie.title} is already in your watchlist"
       render :new
     end
   end

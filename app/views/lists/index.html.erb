@@ -1,10 +1,19 @@
-<%= render 'navbar' %>
-
+<div class="show-container">
+  <div class="show-navbar">
+    <h2>Watchlist Tracker</h2>
+    <div class="show-navbar-text">
+      <p><%= link_to "Home", root_path, class: "show_navbar_text" %></p>
+      <p>Movies</p>
+    </div>
+    <input type="text" class="search-bar" placeholder="Search...">
+    <button type="button" class="signin-button signin-button"><strong>Sign in</strong></button>
+    <button type="button" class="signup-button btn btn-primary"><strong>Sign Up</strong></button>
+  </div>
+  <hr>
 <div class="page-name">
   <h3>My Watch List</h3>
+  <%= link_to "Create Watchlist", new_list_path, class: "create-list-btn" %>
 </div>
-
-
 <div class="cards">
   <% @lists.each do |list| %>
     <% if list.photo.attached? %>
