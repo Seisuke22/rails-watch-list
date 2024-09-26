@@ -17,7 +17,16 @@
         <% if params[:list_id] %>
           <div class="new-form">
             <% @list = List.find(params[:list_id]) if @list.nil? %>
-            <p>Adding to: <%= @list.name if @list %></p>
+            <p class="movie-to-add">Adding to: <strong><%= @list.name if @list %></strong></p>
+            <% if @list.photo.attached? %>
+              <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= cl_image_path @list.photo.key%>); text-decoration: none;">
+                <%= @list.name %>
+              </div>
+            <% else %>
+              <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg); text-decoration: none;">
+                <%= @list.name %>
+              </div>
+            <% end %>
             <%= t.input :movie_id, collection: Movie.all, label_method: :title, value_method: :id, prompt: 'Select a Movie' %>
             <%= t.input :comment %>
             <%= t.submit "Add", class: "btn btn-dark-blue" %>

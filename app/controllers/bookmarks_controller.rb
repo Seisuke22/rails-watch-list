@@ -7,7 +7,6 @@ class BookmarksController < ApplicationController
 
   def create
     @bookmark = current_user.bookmarks.new(bookmark_params)
-
     # Assign movie if provided
     if params[:movie_id]
       @movie = Movie.find(params[:movie_id])
@@ -15,8 +14,8 @@ class BookmarksController < ApplicationController
     end
 
     # Check and assign list if provided
-    if bookmark_params[:list_id].present?
-      @list = List.find_by(id: bookmark_params[:list_id])
+    if List.find(params[:list_id]).present?
+      @list = List.find(params[:list_id])
       if @list.nil?
         flash[:alert] = "List not found."
         redirect_to lists_path and return
