@@ -15,7 +15,7 @@
 
 .mb-3.select.optional.bookmark_list_id {
   padding-top: 10px;
-  padding-bottom: 30px;
+  padding-bottom: 15px;
 }
 
 .form .form-size .text-area .text label {
@@ -72,10 +72,18 @@ strong {
 }
 
 .new-form {
-  width: 500px;
+  width: 450px;
   padding-top: 50px;
 }
 
 .btn.btn-dark-blue {
-  width: 500px;
+  width: 450px;
+}
+
+.mb-3.select.optional.bookmark_movie_id {
+  padding-top: 15px;
+}
+
+.mb-3.text.optional.bookmark_comment {
+  padding-top: 10px;
 }
