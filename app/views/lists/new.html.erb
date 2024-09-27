@@ -4,6 +4,7 @@
     <div class="show-navbar-text">
       <p><%= link_to "Home", root_path, class: "show_navbar_text" %></p>
       <p>Movies</p>
+      <%= link_to "My Lists", lists_path %>
     </div>
     <input type="text" class="search-bar" placeholder="Search...">
     <button type="button" class="signin-button signin-button"><strong>Sign in</strong></button>
@@ -13,6 +14,7 @@
   <div class="form-size">
     <%= simple_form_for(@list) do |t| %>
       <div class="text-area">
+        <h2 class="action-list">Add a new List</h2>
         <div class="text"><%= t.input :name %></div>
         <div class="text"><%= t.input :photo, as: :file %></div>
         <%= t.submit "Add", class: "btn btn-dark-blue" %>

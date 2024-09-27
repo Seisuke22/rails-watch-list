@@ -4,7 +4,7 @@
     <div class="show-navbar-text">
       <p><%= link_to "Home", root_path, class: "show_navbar_text" %></p>
       <p>Movies</p>
-      <p>My lists</p>
+      <%= link_to "My Lists", lists_path %>
     </div>
     <input type="text" class="search-bar" placeholder="Search...">
     <button type="button" class="signin-button signin-button"><strong>Sign in</strong></button>
