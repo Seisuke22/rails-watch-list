@@ -8,6 +8,9 @@
 .form-size {
   display: flex;
   justify-content: center;
+  height: 500px;
+  align-items: center;
+
 }
 
 .text-area {
@@ -63,6 +66,14 @@
   padding-left: 10px;
 }
 
+.action-list {
+  color: white;
+  border-left: 4px solid #00acc1;
+  padding-left: 10px;
+  position: absolute;
+  top: 170px;
+}
+
 strong {
   color: white;
 }
@@ -86,4 +97,8 @@ strong {
 
 .mb-3.text.optional.bookmark_comment {
   padding-top: 10px;
+}
+
+.mb-3.file.optional.list_photo {
+  padding-top: 20px;
 }
