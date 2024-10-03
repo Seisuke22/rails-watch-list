@@ -101,9 +101,6 @@ def fetch_movie_overview(movie_id)
   movie_details_fetch(movie_overviews)
 end
 
-
-end
-
 # Main loop
 puts 'Fetching Trailers, Actors and creating Movies...'
 @cleaned_ids.each do |movie_id|
