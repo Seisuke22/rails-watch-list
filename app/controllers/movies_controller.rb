@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MoviesController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
   def index
@@ -26,6 +28,7 @@ class MoviesController < ApplicationController
   private
 
   def movie_params
-    params.require(:movie).permit(:id, :title, :overview, :rating, :genres, :release_year, :runtime, :trailer_url, :actor_name, :actor_image)
+    params.require(:movie).permit(:id, :title, :overview, :rating, :genres, :release_year, :runtime, :trailer_url,
+                                  :actor_name, :actor_image)
   end
 end

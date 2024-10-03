@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BookmarksController < ApplicationController
   def new
     @bookmark = Bookmark.new
@@ -17,7 +19,7 @@ class BookmarksController < ApplicationController
     if params[:list_id].present?
       @list = List.find(params[:list_id])
       if @list.nil?
-        flash[:alert] = "List not found."
+        flash[:alert] = 'List not found.'
         redirect_to lists_path and return
       else
         @bookmark.list = @list
@@ -26,7 +28,7 @@ class BookmarksController < ApplicationController
 
     # Attempt to save the bookmark
     if @bookmark.save
-      flash[:notice] = "Bookmark was successfully created."
+      flash[:notice] = 'Bookmark was successfully created.'
       redirect_to list_path(@bookmark.list_id)
     else
       flash[:alert] = "#{@bookmark.movie.title} is already in your watchlist"
@@ -39,19 +41,15 @@ class BookmarksController < ApplicationController
     @bookmark = Bookmark.find(params[:id])
     @movie = @bookmark.movie # Fetch the associated movie for redirection
     if @bookmark.destroy
-      redirect_to list_path(@list), notice: "Bookmark successfully deleted"
+      redirect_to list_path(@list), notice: 'Bookmark successfully deleted'
     else
-      redirect_to list_path(@list), alert: "There was an error deleting the bookmark"
+      redirect_to list_path(@list), alert: 'There was an error deleting the bookmark'
     end
   end
-
-
 
   private
 
   def bookmark_params
     params.require(:bookmark).permit(:comment, :movie_id, :list_id)
   end
-
-
 end

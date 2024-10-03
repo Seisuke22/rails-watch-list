@@ -1,0 +1,3 @@
+# inherit_from: .rubocop_todo.yml
+Metrics/BlockLength:
+  Max: 100 # or another number that suits your needs
