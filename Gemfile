@@ -58,14 +58,10 @@ gem 'simple_form'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem 'brakeman'
-  gem 'bundler-audit'
   gem 'debug', platforms: %i[mri mswin mswin64 mingw x64_mingw]
   gem 'dotenv-rails', groups: %i[development test]
   gem 'rspec-rails', '~> 7.0.0'
-  gem 'rubocop'
-  gem 'rubocop-rails'
-  gem 'ruby_audit'
+
 end
 
 group :development do
