@@ -61,6 +61,7 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mswin mswin64 mingw x64_mingw]
   gem 'dotenv-rails', groups: %i[development test]
   gem 'rspec-rails', '~> 7.0.0'
+  gem 'factory_bot_rails', '~> 6.4', '>= 6.4.3'
 
 end
 
